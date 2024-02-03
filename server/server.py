@@ -158,14 +158,16 @@ def resume_skills():
             {"input_documents": docs, "question": user_question},
             return_only_outputs=True
         )
-        
+
         return response
 
     response = user_input("What info does the resume state?")
 
-    # Remove extra backslashes from the response
-    formatted_response = json.loads(response['output_text'].replace('\\"', '"'))
-    return jsonify(formatted_response), 200
+    # Extract relevant information from the response
+    formatted_response = {}
+    if 'output_text' in response:
+        formatted_response = json.loads(response['output_text'].replace('\\"', '"'))
 
+    return jsonify({'response': formatted_response, 'pdf': str(pages)}), 200
 if __name__ == "__main__":
     app.run(debug=True)
