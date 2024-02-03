@@ -7,7 +7,6 @@ import ContextState from "./components/Context/ContextState.jsx";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  
   <React.StrictMode>
     <ContextState>
       <BrowserRouter>
