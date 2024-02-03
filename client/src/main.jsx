@@ -5,7 +5,6 @@ import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import ContextState from "./components/Context/ContextState.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  
   <React.StrictMode>
     <ContextState>
       <NextUIProvider>
@@ -15,4 +14,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </NextUIProvider>
     </ContextState>
   </React.StrictMode>
-);
+)
