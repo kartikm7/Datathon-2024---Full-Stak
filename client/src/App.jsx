@@ -1,13 +1,15 @@
-// App.jsx
-import React from 'react';
-import './App.css'; // Import a CSS file to style the components (create App.css in the same directory)
-import TransparentCard from './components/TransparentCard';
-function App() {
-  return (
-    <div className="app">
-     
-      <TransparentCard />
-    </div>
+import React from "react";
+import './App.css'
+import Navbarr from "./components/Navbarr";
+import { Button, Navbar } from "@nextui-org/react";
+import Homepage from "./components/Homepage";
+function App(){
+  return(
+    <div>
+    <Navbarr/>
+
+   <Homepage/>
+   </div>
   )
 }
 
