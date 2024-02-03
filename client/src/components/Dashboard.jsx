@@ -2,7 +2,7 @@ import {React} from "react";
 import Sidebar from "./Dashboard/Sidebar";
 import DashboardNavbar from "./Dashboard/DashboardNavbar";
 
-export function allBars() {
+export function AllBars() {
   return (
     <div className="w-full h-full flex flex-row bg-background">
       <Sidebar />
@@ -18,7 +18,7 @@ export function allBars() {
 function Dashboard() {
   return (
     <div>
-        <allBars />
+        <AllBars />
     </div>
   );
 }

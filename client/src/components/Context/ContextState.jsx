@@ -1,14 +1,14 @@
 import React, {useState} from "react";
-import context from "./context";
+import talentTrailContext from "./context";
 
 
 function ContextState(props){
     const [userState, setUserState] = useState(false);
     
     return(
-        <context.Provider value={{userState, setUserState ,}}>
+        <talentTrailContext.Provider value={{userState, setUserState ,}}>
             {props.children}
-        </context.Provider>
+        </talentTrailContext.Provider>
     )
 }
 

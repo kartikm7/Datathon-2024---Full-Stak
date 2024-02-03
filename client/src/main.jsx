@@ -4,14 +4,18 @@ import App from "./App.jsx";
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import ContextState from "./components/Context/ContextState.jsx";
+import { BrowserRouter } from "react-router-dom";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ContextState>
+      <BrowserRouter>
       <NextUIProvider>
         <main className="dark text-foreground bg-background">
           <App />
         </main>
       </NextUIProvider>
+      </BrowserRouter>
     </ContextState>
   </React.StrictMode>
-)
+);
