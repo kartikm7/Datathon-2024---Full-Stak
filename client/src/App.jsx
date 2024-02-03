@@ -1,11 +1,15 @@
 import React from "react";
 import './App.css'
-import { Button } from "@nextui-org/react";
-
+import Navbarr from "./components/Navbarr";
+import { Button, Navbar } from "@nextui-org/react";
+import Homepage from "./components/Homepage";
 function App(){
   return(
     <div>
-    </div>
+    <Navbarr/>
+
+   <Homepage/>
+   </div>
   )
 }
 
