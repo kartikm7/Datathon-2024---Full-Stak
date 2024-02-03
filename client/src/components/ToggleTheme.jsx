@@ -11,7 +11,7 @@ function ToggleTheme() {
       onClick={() => setTheme((preValue) => !preValue)}
       defaultSelected
       size="lg"
-      color="success"
+      color="secondary"
       startContent={<Sun />}
       endContent={<Moon />}
     >
