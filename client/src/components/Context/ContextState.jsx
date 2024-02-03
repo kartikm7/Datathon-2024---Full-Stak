@@ -4,9 +4,9 @@ import talentTrailContext from "./context";
 
 function ContextState(props){
     const [userState, setUserState] = useState(false);
-    
+    const [setUserLogin, setUserDetails] = useState(false)
     return(
-        <talentTrailContext.Provider value={{userState, setUserState ,}}>
+        <talentTrailContext.Provider value={{userState, setUserState , setUserLogin, setUserDetails}}>
             {props.children}
         </talentTrailContext.Provider>
     )
