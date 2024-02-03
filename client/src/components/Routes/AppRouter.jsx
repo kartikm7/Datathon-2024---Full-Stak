@@ -2,15 +2,17 @@ import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "../Homepage";
 import Dashboard from "../Dashboard";
-import context from "../Context/context";
+import talentTrailContext from "../Context/context";
+import Temp from "../Temp";
 
 function AppRouter() {
-  const {userState} = useContext(context)
+  const {userState} = useContext(talentTrailContext)
 
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/temp" element={<Temp />} />
     </Routes>
   );
 }

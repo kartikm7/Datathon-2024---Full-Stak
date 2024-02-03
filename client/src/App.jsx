@@ -7,7 +7,6 @@ import AppRouter from "./components/Routes/AppRouter";
 function App() {
   return (
     <div>
-      <Homepage />
       <AppRouter />
     </div>
   );
