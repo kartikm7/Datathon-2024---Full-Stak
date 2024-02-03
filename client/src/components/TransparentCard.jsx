@@ -16,7 +16,6 @@ export default function App() {
     }}>
       <CardBody>
         <h1 style={{fontSize: '28px', fontWeight: 'bold', marginBottom: '80px' }}>Please Select to Continue</h1>
-      
         <Button style={{ marginBottom: '20px', backgroundColor: 'white', color: 'black' , borderRadius: '18', fontSize:'17px', height:'50px'}} onClick={() => console.log("Student clicked")}>Student</Button>
         <Button style={{  backgroundColor: 'white', color: 'black' , borderRadius: '20', fontSize:'17px', height:'50px'}} onClick={() => console.log("Organization clicked")}>Organization</Button>
       </CardBody>
