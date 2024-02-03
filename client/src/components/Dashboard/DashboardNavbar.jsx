@@ -11,13 +11,13 @@ import {
   } from "@nextui-org/react";
   import React, { useContext } from "react";
   import ToggleTheme from "../ToggleTheme";
-  import { JanDrishtiContext } from "../../context/Context";
-  import Logout from "../Logout";
+  import talentTrailContext from "../Context/context";
+//   import Logout from "../Logout";
   
   function DashboardNavbar() {
   
-      const {userDetails} = useContext(JanDrishtiContext)
-      const {name, email, imageURL} = userDetails
+    //   const {userDetails} = useContext(talentTrailContext)
+    //   const {name, email, imageURL} = userDetails
   
     return (
       <Navbar>
@@ -30,19 +30,19 @@ import {
                 as="button"
                 className="transition-transform"
                 color="secondary"
-                name={name}
+                name="name"
                 size="sm"
-                src={imageURL}
+                src=""
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">{name}</p>
-                <p className="font-semibold">{email}</p>
+                <p className="font-semibold">name</p>
+                <p className="font-semibold">email</p>
               </DropdownItem>
               {/* <DropdownItem key="logout" color="danger"> */}
               <DropdownItem>
-                <Logout />
+                {/* <Logout /> */}
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
