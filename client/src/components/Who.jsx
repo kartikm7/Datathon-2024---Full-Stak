@@ -5,7 +5,6 @@ import {
   CardBody,
   CardFooter,
   Divider,
-  Link,
   Image,
   Button,
   Radio,
@@ -14,12 +13,14 @@ import {
 import { Gem } from "lucide-react";
 import { useState } from "react";
 import Login from "./Login";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useContext } from "react";
+import talentTrailContext from "./Context/context"; 
 
 function Who() {
+  const {resume, setResume} = useContext(talentTrailContext)
   const [value, setValue] = useState("");
   const navigate = useNavigate();
-
 
   const divStyle = {
     backgroundColor: "rgb(12, 74, 110)",
@@ -36,7 +37,13 @@ function Who() {
 
   function handleClick() {
     localStorage.setItem("type", value);
-    navigate(value == "student" ? '/dashboard' : '/dashboard-company')
+    const check = localStorage.getItem("pdf")
+
+    if(check){
+      navigate(value == "student" ? '/dashboard' : '/dashboard-company')
+    }else{
+      navigate('/resume-upload')
+    }
   }
 
   return (
@@ -77,9 +84,7 @@ function Who() {
           </CardBody>
           <Divider />
           <CardFooter>
-            <Link isExternal showAnchorIcon href="https://localhost:5173/">
-              Visit the home page to know more.
-            </Link>
+            <Link to='/'><p>Visit the home page to know more.</p></Link>
           </CardFooter>
         </Card>
       </div>

@@ -11,7 +11,7 @@ export function AllBars() {
 
 function Dashboard() {
   return (
-    <div className="w-full h-screen flex flex-row bg-background">
+    <div className="w-full h-screen flex flex-row bg-background overflow-hidden">
         <Sidebar />
       <div className="w-full h-full">
         <DashboardNavbar />

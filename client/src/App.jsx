@@ -6,7 +6,7 @@ import TransparentCard from "./components/TransparentCard";
 import AppRouter from "./components/Routes/AppRouter";
 function App() {
   return (
-    <div>
+    <div className="font-inter">
       <AppRouter />
     </div>
   );

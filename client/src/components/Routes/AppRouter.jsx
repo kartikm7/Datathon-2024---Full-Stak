@@ -8,6 +8,8 @@ import {Button} from "@nextui-org/react"
 import Who from "../Who";
 import JobProfileMatcher from "../Dashboard/JobProfileMatcher";
 import DashboardHome from "../Dashboard/DashboardHome";
+import ResumeUploader from "../ResumeUploader";
+import StandardTest from "../Dashboard/StandardTest";
 
 function AppRouter() {
   const {userState} = useContext(talentTrailContext)
@@ -18,9 +20,10 @@ function AppRouter() {
       <Route path="/who" element={<Who /> } />
       <Route path="/dashboard" element={<Dashboard />} >
         <Route path="/dashboard/" element={<DashboardHome />}  />
-        {/* <Route path='/dashboard/home' element={} /> */}
+        <Route path='/dashboard/resuscore' element={<StandardTest />} />
         <Route path="/dashboard/resume-matcher" element={<JobProfileMatcher />} /> 
       </Route>
+      <Route path="/resume-upload" element={<ResumeUploader/>} />
       <Route path="/temp" element={<Temp />} />
     </Routes>
   );
