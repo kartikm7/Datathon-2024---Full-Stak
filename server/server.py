@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 import json
@@ -12,6 +13,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 
 app = Flask(__name__)
+CORS(app)
 load_dotenv()
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -21,6 +23,8 @@ PROMPT_TEMPLATE = """Create ten multiple choice questions about the given skill 
 Skill Name: {skill}
 Keywords: {keywords}
 
+i want the response in one single string
+{{"questions":[<Questions with options in quotes and separated with commas>]}}
 """
 
 ANSWER_PROMPT = """
@@ -82,9 +86,9 @@ def create_questions():
         return jsonify({"msg": f"Error processing input parameters: {str(e)}"}), 500
 
     response = get_gemini_response(PROMPT_TEMPLATE.format(skill=skill, keywords=", ".join(keywords)))
-    generated_questions = [q.strip() for q in response.split('\n')[:-1]]
+    # generated_questions = [q.strip() for q in response.split('\n')[:-1]]
 
-    return jsonify({"questions": generated_questions}), 200
+    return jsonify({"questions": response}), 200
 
 @app.route("/at_system", methods=["POST"])
 def at_system():
@@ -132,13 +136,19 @@ def get_conversational_chain():
 
 @app.route('/resume_skills', methods=['POST'])
 def resume_skills():
-    data = request.get_json()
-    pdf_path = data.get('pdf_path')
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
 
-    if not pdf_path:
-        return jsonify({'error': 'PDF path is required.'}), 400
+    f = request.files['file']
 
-    loader = PyPDFLoader(pdf_path)
+    if f.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+
+    # Save the file locally
+    file_path = f.filename
+    f.save(file_path)
+
+    loader = PyPDFLoader(file_path)
     pages = loader.load_and_split()
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
@@ -158,14 +168,16 @@ def resume_skills():
             {"input_documents": docs, "question": user_question},
             return_only_outputs=True
         )
-        
+    
         return response
 
     response = user_input("What info does the resume state?")
 
-    # Remove extra backslashes from the response
-    formatted_response = json.loads(response['output_text'].replace('\\"', '"'))
-    return jsonify(formatted_response), 200
+    # Extract relevant information from the response
+    formatted_response = {}
+    if 'output_text' in response:
+        formatted_response = json.loads(response['output_text'].replace('\\"', '"'))
 
+    return jsonify({'response': formatted_response, 'pdf': str(pages)}), 200
 if __name__ == "__main__":
     app.run(debug=True)

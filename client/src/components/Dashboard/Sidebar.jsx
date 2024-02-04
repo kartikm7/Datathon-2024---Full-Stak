@@ -1,8 +1,7 @@
-import { Button, Card, CardHeader, Divider, Link } from "@nextui-org/react";
+import { Button, Card, CardHeader, Divider } from "@nextui-org/react";
 import { Languages, LayoutDashboard, Newspaper, ScanSearch, Sparkles, Twitter } from "lucide-react";
 import React from "react";
-
-
+import {Link} from "react-router-dom"
 
 function Sidebar() {
   return (
@@ -14,19 +13,19 @@ function Sidebar() {
       </div>
       <Divider />
       <div className="p-5">
-        <Link href="/dashboard"><Button className="text-md" color="secondary" variant="ghost" startContent={<LayoutDashboard/>}>Home</Button></Link>
+        <Link to="/dashboard"><Button className="text-md" color="secondary" variant="ghost" startContent={<LayoutDashboard/>}>Home</Button></Link>
       </div>
       <Divider />
       <div className="p-5">
         <p></p>
-        <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Sparkles/>}>Standardized Test</Button>
-        <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Newspaper/>}>Resume Profile Matcher</Button>
+        <Link to='/dashboard/resuscore'><Button className="text-sm mb-5" color="default" variant="flat" startContent={<Sparkles/>}>Standardized Test</Button></Link>
+        <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Newspaper/>}>Resume JD Matcher</Button>
         <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Languages/>}>Mock Test</Button>
-        <Link href="/dashboard"><Button className="text-sm mb-5" color="default" variant="flat" startContent={<ScanSearch/>}>Job Inbox</Button></Link>
+        <Button className="text-sm mb-5" color="default" variant="flat" startContent={<ScanSearch/>}>Job Inbox</Button>
         <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Twitter  />}>Contact Us</Button>
       </div>
       <Divider className="mt-20"/>
-      <p className="absolute bottom-0 font-light text-sm p-5 pb-10 text-left">Powered by Talent Trail</p>
+      <p className="absolute bottom-0 font-light text-sm p-5 pb-10 text-left">Powered by Talent Trail.</p>
     </div>
   );
 }
