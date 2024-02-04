@@ -9,7 +9,7 @@ function Sidebar() {
     <div className="flex flex-col w-1/5 h-full  overflow-scroll ">
       <div className="p-5 text-left">
         <h1 className="font-semibold text-3xl text-secondary" >Dashboard</h1>
-        <p className="font-light text-sm">Students</p>
+        <p className="font-light text-sm">Company</p>
       </div>
       <Divider />
       <div className="p-5">
@@ -18,9 +18,7 @@ function Sidebar() {
       <Divider />
       <div className="p-5">
         <p></p>
-        <Link to='/dashboard/resuscore'><Button className="text-sm mb-5" color="default" variant="flat" startContent={<Sparkles/>}>Standardized Test</Button></Link>
-        <Link to="/dashboard/job-matcher"><Button className="text-sm mb-5" color="default" variant="flat" startContent={<Newspaper/>}>Resume JD Matcher</Button></Link>
-        <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Languages/>}>Mock Test</Button>
+        <Link to='/dashboard/resuscore'><Button className="text-sm mb-5" color="default" variant="flat" startContent={<Sparkles/>}>Recruit AI</Button></Link>
         <Button className="text-sm mb-5" color="default" variant="flat" startContent={<ScanSearch/>}>Job Inbox</Button>
         <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Twitter  />}>Contact Us</Button>
       </div>
