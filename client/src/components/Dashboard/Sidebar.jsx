@@ -19,7 +19,7 @@ function Sidebar() {
       <div className="p-5">
         <p></p>
         <Link to='/dashboard/resuscore'><Button className="text-sm mb-5" color="default" variant="flat" startContent={<Sparkles/>}>Standardized Test</Button></Link>
-        <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Newspaper/>}>Resume JD Matcher</Button>
+        <Link to="/dashboard/job-matcher"><Button className="text-sm mb-5" color="default" variant="flat" startContent={<Newspaper/>}>Resume JD Matcher</Button></Link>
         <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Languages/>}>Mock Test</Button>
         <Button className="text-sm mb-5" color="default" variant="flat" startContent={<ScanSearch/>}>Job Inbox</Button>
         <Button className="text-sm mb-5" color="default" variant="flat" startContent={<Twitter  />}>Contact Us</Button>

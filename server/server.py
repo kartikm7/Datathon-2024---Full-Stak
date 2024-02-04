@@ -35,6 +35,25 @@ input: {user_input}
 I want the response in one single string having the structure without any "\"
 {{"correctOptions":"[]", "total_score":"<only number>"}}"""
 
+DB_PROMPT = """
+You are a Firestore Query Assistant, tasked with generating queries to fetch data based on the provided jd (job description). The documents in the 'users' collection have the following fields:
+
+- email (string)
+- gpa (string)
+- gradYear (string)
+- name (string)
+- resuscore (string)
+- skill (array)
+- uid (string)
+
+jd: {jd}
+
+Provide the query in the following format, it must be a firestore javascript query:
+
+{{
+  "query": "<only the query and no other data>"
+}}
+"""
 INPUT_PROMPT = """
 Hey Act Like a skilled or very experienced ATS (Application Tracking System)
 with a deep understanding of tech fields such as software engineering, data science,
@@ -54,6 +73,16 @@ def get_gemini_response(input_string):
     model = genai.GenerativeModel("gemini-pro")
     response = model.generate_content(input_string).text
     return response
+
+@app.route("/getDBQuery", methods=["POST"])
+def getDBQuery():
+    data = request.get_json()
+    if not data or ("jd" not in data or data["jd"] is None):
+        return jsonify({"msg": "'jd' key is mandatory and cannot be empty."}), 400
+
+    user_input = str(data["jd"]).strip()
+    response = get_gemini_response(DB_PROMPT.format(jd=user_input))
+    return jsonify(response), 200
 
 @app.route("/grade_quiz", methods=["POST"])
 def grade():
@@ -97,20 +126,20 @@ def at_system():
 
     data = request.get_json()
 
-    if "job_description" not in data or "pdf_path" not in data:
-        return jsonify({"msg": "'job_description' and 'pdf_path' keys are mandatory."}), 400
+    if "job_description" not in data or "resume" not in data:
+        return jsonify({"msg": "'job_description' and 'resume' keys are mandatory."}), 400
 
     try:
         jd = str(data["job_description"]).strip()
-        pdf_path = str(data["pdf_path"]).strip()
+        resume = str(data["resume"]).strip()
     except Exception as e:
         return jsonify({"msg": f"Error processing input parameters: {str(e)}"}), 500
 
-    loader = PyPDFLoader(pdf_path)
-    pages = loader.load_and_split()
+    # loader = PyPDFLoader(pdf_path)
+    pages = resume
 
     response = get_gemini_response(INPUT_PROMPT.format(
-                            text=pages[0].page_content,
+                            text=pages,
                             description=jd))
 
     parsed_response = eval(response)
